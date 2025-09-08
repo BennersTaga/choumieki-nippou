@@ -1,0 +1,11 @@
+{
+  "name": "choumieki-nippou",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "echo 'lint placeholder'",
+    "test": "echo 'test placeholder'",
+    "deploy:gas": "bash tools/deploy.sh",
+    "ci:vercel": "node tools/write-clasprc.js && npm run lint && npm test && npm run deploy:gas"
+  }
+}
