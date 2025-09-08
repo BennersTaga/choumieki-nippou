@@ -1,4 +1,3 @@
 {
-  "functions": {},
   "buildCommand": "npm run ci:vercel"
 }
