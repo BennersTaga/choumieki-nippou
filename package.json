@@ -2,8 +2,7 @@
   "name": "choumieki-nippou",
   "private": true,
   "scripts": {
-    "ci:vercel": "node tools/write-clasprc.js && npm run deploy:gas",
-    "deploy:gas": "npx clasp push -f && npx clasp version \"Vercel CI\" && npx clasp deploy -i $DEPLOYMENT_ID_OFFICE && npx clasp deploy -i $DEPLOYMENT_ID_FLOOR",
+    "ci:vercel": "node tools/write-clasprc.js && bash tools/deploy.sh",
     "lint": "echo skip",
     "test": "echo skip"
   },
