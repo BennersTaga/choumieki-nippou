@@ -3,14 +3,12 @@
   "private": true,
   "scripts": {
     "ci:vercel": "node tools/write-clasprc.js && npm run deploy:gas",
-    "deploy:gas": "bash tools/deploy.sh",
+    "deploy:gas": "npx clasp push -f && npx clasp version \"Vercel CI\" && npx clasp deploy -i $DEPLOYMENT_ID_OFFICE && npx clasp deploy -i $DEPLOYMENT_ID_FLOOR",
     "lint": "echo skip",
     "test": "echo skip"
   },
   "devDependencies": {
     "@google/clasp": "^2.5.0"
   },
-  "engines": {
-    "node": ">=18"
-  }
+  "engines": { "node": ">=18" }
 }
