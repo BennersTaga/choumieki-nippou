@@ -1,0 +1,16 @@
+{
+  "name": "choumieki-nippou",
+  "private": true,
+  "scripts": {
+    "ci:vercel": "node tools/write-clasprc.js && npm run deploy:gas",
+    "deploy:gas": "bash tools/deploy.sh",
+    "lint": "echo skip",
+    "test": "echo skip"
+  },
+  "devDependencies": {
+    "@google/clasp": "^2.4.2"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
