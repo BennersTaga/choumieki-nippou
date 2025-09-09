@@ -1,23 +1,21 @@
 #!/usr/bin/env bash
-# NOTE: このファイルは実行権限(100755)を維持してください
 set -euo pipefail
 
-echo "[deploy.sh] start"
+echo "[deploy.sh] start (VERCEL_ENV=${VERCEL_ENV:-})"
 
-# ~/.clasprc.json は write-clasprc.js が Vercel 実行前に作成する
+# Preview / Development では GAS へのデプロイをスキップ
+if [ "${VERCEL_ENV:-}" != "production" ]; then
+  echo "[deploy.sh] non-production build -> skip GAS deploy"
+  exit 0
+fi
+
 echo "[deploy.sh] clasp version (via npx)"
-npx -y @google/clasp --version
+npx clasp -v
 
 echo "[deploy.sh] push"
-npx -y @google/clasp push -f
-
-echo "[deploy.sh] create version"
-npx -y @google/clasp version "Vercel CI $(date +%Y%m%d%H%M%S)"
-
-echo "[deploy.sh] deploy office"
-npx -y @google/clasp deploy -i "$DEPLOYMENT_ID_OFFICE"
-
-echo "[deploy.sh] deploy floor"
-npx -y @google/clasp deploy -i "$DEPLOYMENT_ID_FLOOR"
+npx clasp push -f
+npx clasp version "Vercel CI"
+npx clasp deploy -i "$DEPLOYMENT_ID_OFFICE"
+npx clasp deploy -i "$DEPLOYMENT_ID_FLOOR"
 
 echo "[deploy.sh] done"
